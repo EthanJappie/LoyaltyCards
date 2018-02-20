@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "495800931621",
+    "firebase_url": "https://loyaltycards-5289d.firebaseio.com",
+    "project_id": "loyaltycards-5289d",
+    "storage_bucket": "loyaltycards-5289d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495800931621:android:3a1fad1469ad5909",
+        "android_client_info": {
+          "package_name": "com.example.ethan.loyaltycards"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495800931621-bd5i5dv4lvnekrq6oujevq6ueiu738i7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ethan.loyaltycards",
+            "certificate_hash": "09f8750a1eedea6d5c08e81c081531a17a601ec8"
+          }
+        },
+        {
+          "client_id": "495800931621-j0nc0eihvj2ae6le6virk01k0th3eicg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcVUzzJw8llDsECu4804uHHIh128W8adw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495800931621-j0nc0eihvj2ae6le6virk01k0th3eicg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

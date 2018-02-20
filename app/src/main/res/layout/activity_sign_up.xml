@@ -1,0 +1,45 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_list"
+    tools:context="com.example.ethan.loyaltycards.SignUpActivity"
+    android:id="@+id/signUpLayout">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        android:paddingHorizontal="20dp">
+        <TextView
+            android:id="@+id/heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/signUp"
+            android:textAlignment="center"
+            android:textSize="@dimen/backdrop_title"
+            android:paddingBottom="40dp"/>
+        <EditText
+            android:id="@+id/loginEmail"
+            android:hint="Email Address"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="20dp"/>
+        <EditText
+            android:id="@+id/loginPassword"
+            android:hint="Password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="textPassword"
+            android:layout_marginBottom="20dp"/>
+        <Button
+            android:id="@+id/btnSignUpFinal"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:text="Sign UP"
+            style="@style/Button"/>
+
+    </LinearLayout>
+</FrameLayout>
