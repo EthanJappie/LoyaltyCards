@@ -19,24 +19,23 @@
 
             <ImageView
                 android:id="@+id/thumbnail"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/album_cover_height"
-                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="@dimen/thumbnailWidth"
+                android:layout_height="@dimen/thumbnailHeight"
+                android:background="attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:scaleType="fitXY"
-                android:layout_marginRight="40dp"/>
+                android:scaleType="fitXY" />
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/thumbnail"
-                android:textStyle="bold"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
                 android:textColor="@color/album_title"
-                android:textSize="@dimen/album_title" />
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/count"
@@ -47,15 +46,6 @@
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:textSize="@dimen/songs_count" />
-
-            <!--<ImageButton
-                android:id="@+id/favourite"
-                android:layout_width="@dimen/favourite_width"
-                android:layout_height="@dimen/favourite_height"
-                android:layout_alignParentTop="true"
-                android:layout_alignStart="@+id/overflow"
-                android:background="#00000000"
-                android:scaleType="centerCrop" />-->
 
             <CheckBox
                 android:id="@+id/favourite"
@@ -74,10 +64,19 @@
                 android:layout_marginTop="@dimen/ic_album_overflow_margin_top"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_action_dots" />
+
             <TextView
                 android:id="@+id/id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/barcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/overflow"
+                android:layout_marginStart="14dp" />
 
         </RelativeLayout>
 

@@ -2,6 +2,8 @@ package com.example.ethan.loyaltycards;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -31,9 +33,9 @@ import java.util.List;
 public class LoyaltyCardAdapter extends RecyclerView.Adapter<LoyaltyCardAdapter.MyViewHolder>{
 
     private DatabaseReference mDatabaseRef;
-    private SparseBooleanArray itemStateArray= new SparseBooleanArray();
     private Context mContext;
     private List<LoyaltyCards> cardList;
+    private CoordinatorLayout activityMain;
 
     @Override
     public int getItemCount() {
@@ -41,7 +43,7 @@ public class LoyaltyCardAdapter extends RecyclerView.Adapter<LoyaltyCardAdapter.
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        public TextView store,programme,id;
+        public TextView store,programme,id, barcode;
         public ImageView thumbnail, overflow;
         public CheckBox favourite;
 
@@ -53,6 +55,7 @@ public class LoyaltyCardAdapter extends RecyclerView.Adapter<LoyaltyCardAdapter.
             thumbnail = view.findViewById(R.id.thumbnail);
             overflow = view.findViewById(R.id.overflow);
             favourite = view.findViewById(R.id.favourite);
+            barcode = view.findViewById(R.id.barcode);
         }
     }
     public LoyaltyCardAdapter(Context mContext, List<LoyaltyCards> cardList) {
@@ -74,15 +77,11 @@ public class LoyaltyCardAdapter extends RecyclerView.Adapter<LoyaltyCardAdapter.
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Stores");
 
-        holder.setIsRecyclable(false);
+        //holder.setIsRecyclable(false);
         holder.store.setText(card.getStore());
         holder.programme.setText(card.getProgramme());
         holder.favourite.setChecked(card.getFavourite());
-
-        String store = card.getStore();
-        String program = card.getProgramme();
-        String thumb = card.getThumbnail();
-        String id = card.getId();
+        holder.barcode.setText(card.getBarcode() != null ? card.getBarcode() : "Barcode");
 
         Glide.with(mContext).load(GetImage(mContext,card.getThumbnail())).into(holder.thumbnail);
         holder.overflow.setOnClickListener(new View.OnClickListener() {
@@ -96,16 +95,12 @@ public class LoyaltyCardAdapter extends RecyclerView.Adapter<LoyaltyCardAdapter.
             @Override
             public void onClick(View v) {
                 if(holder.favourite.isChecked()){
-                    int i = Integer.parseInt(card.getId()) + 1;
-
-                    Toast.makeText(mContext, "Add to favourite : True - " + card.getId(), Toast.LENGTH_SHORT).show();
-                    holder.favourite.setChecked(false);
-                    mDatabaseRef.child(card.getId()).child("Favourite").setValue(false);
-                }
-                else if(holder.favourite.isChecked() == false){
-                    Toast.makeText(mContext, "Add to favourite : False - " + card.getId(), Toast.LENGTH_SHORT).show();
                     holder.favourite.setChecked(true);
-                    mDatabaseRef.child(card.getId()).child("Favourite").setValue(true);
+                    mDatabaseRef.child(card.getIdString()).child("Favourite").setValue(true);
+                }
+                else if(!holder.favourite.isChecked()){
+                    holder.favourite.setChecked(false);
+                    mDatabaseRef.child(card.getIdString()).child("Favourite").setValue(false);
                 }
                 notifyDataSetChanged();
             }
@@ -125,23 +120,16 @@ public class LoyaltyCardAdapter extends RecyclerView.Adapter<LoyaltyCardAdapter.
         popup.show();
     }
 
-    private void setFavourite(View v){
-
-    }
-
     class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
-
-        public MyMenuItemClickListener() {
-        }
 
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.action_add_favourite:
-                    Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Added to favourites", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.action_delete:
-                    Toast.makeText(mContext, "Remove", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Removed", Toast.LENGTH_SHORT).show();
                     return true;
                 default:
             }

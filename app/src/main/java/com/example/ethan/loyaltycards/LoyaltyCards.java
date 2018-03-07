@@ -5,28 +5,34 @@ package com.example.ethan.loyaltycards;
  */
 
 public class LoyaltyCards {
-    private String Id;
+    private int Id;
     private String Store;
     private String Programme;
     private String Thumbnail;
     private Boolean Favourite;
+    private Boolean Active;
+    private String Barcode;
 
     public LoyaltyCards(){}
 
-    public LoyaltyCards(String id,String storeName,String loyaltyProgrammeName,String thumbnail,Boolean Favourite){
+    public LoyaltyCards(int id,String storeName,String loyaltyProgrammeName,String thumbnail,Boolean Favourite, Boolean Active, String Barcode){
         this.setId(id);
         this.setStore(storeName);
         this.setProgramme(loyaltyProgrammeName);
         this.setThumbnail(thumbnail);
         this.setFavourite(Favourite);
+        this.setActive(Active);
+        this.setBarcode(Barcode);
     }
 
 
-    public String getId() {
+    public int getId() {
         return Id;
     }
 
-    public void setId(String id) {
+    public String getIdString() { return new StringBuilder().append(Id).toString(); }
+
+    public void setId(int id) {
         Id = id;
     }
 
@@ -61,4 +67,16 @@ public class LoyaltyCards {
     public void setFavourite(Boolean favourite) {
         Favourite = favourite;
     }
+
+    public Boolean getActive() {
+        return Active;
+    }
+
+    public void setActive(Boolean active) {
+        Active = active;
+    }
+
+    public String getBarcode() { return Barcode; }
+
+    public void setBarcode(String barcode) { Barcode = barcode; }
 }
